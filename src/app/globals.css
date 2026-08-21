@@ -1,0 +1,198 @@
+@import "tailwindcss";
+
+:root {
+  --background: #faf9f6;
+  --foreground: #1c1917;
+
+  /* Brand accent — #23B2CB teal/cyan. */
+  --color-brand-50: #eef9fb;
+  --color-brand-100: #d8f3f8;
+  --color-brand-200: #b1e8f1;
+  --color-brand-300: #7bd9ea;
+  --color-brand-400: #46cbe2;
+  --color-brand-500: #23b2cb;
+  --color-brand-600: #1596ac;
+  --color-brand-700: #0e7c90;
+  --color-brand-800: #0d6373;
+  --color-brand-900: #0c4a55;
+
+  /* Warm neutral scale (Tailwind's "stone" ramp) overrides the default cool
+     "slate" tokens used throughout the app, so every existing slate-* utility
+     picks up a warm, paper-toned neutral instead of a cold blue-gray. */
+  --color-slate-50: #fafaf9;
+  --color-slate-100: #f5f5f4;
+  --color-slate-200: #e7e5e4;
+  --color-slate-300: #d6d3d1;
+  --color-slate-400: #a8a29e;
+  --color-slate-500: #78716c;
+  --color-slate-600: #57534e;
+  --color-slate-700: #44403c;
+  --color-slate-800: #292524;
+  --color-slate-900: #1c1917;
+
+  /* Slightly tightened radius scale — confident and crisp rather than
+     the oversized "blobby" rounding common to generic template UI. */
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.625rem;
+  --radius-2xl: 0.875rem;
+  --radius-3xl: 1.125rem;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: "Plus Jakarta Sans Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-serif: "Lora Variable", ui-serif, Georgia, "Times New Roman", serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  --color-brand-50: var(--color-brand-50);
+  --color-brand-100: var(--color-brand-100);
+  --color-brand-200: var(--color-brand-200);
+  --color-brand-300: var(--color-brand-300);
+  --color-brand-400: var(--color-brand-400);
+  --color-brand-500: var(--color-brand-500);
+  --color-brand-600: var(--color-brand-600);
+  --color-brand-700: var(--color-brand-700);
+  --color-brand-800: var(--color-brand-800);
+  --color-brand-900: var(--color-brand-900);
+
+  --color-slate-50: var(--color-slate-50);
+  --color-slate-100: var(--color-slate-100);
+  --color-slate-200: var(--color-slate-200);
+  --color-slate-300: var(--color-slate-300);
+  --color-slate-400: var(--color-slate-400);
+  --color-slate-500: var(--color-slate-500);
+  --color-slate-600: var(--color-slate-600);
+  --color-slate-700: var(--color-slate-700);
+  --color-slate-800: var(--color-slate-800);
+  --color-slate-900: var(--color-slate-900);
+
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+  --radius-2xl: var(--radius-2xl);
+  --radius-3xl: var(--radius-3xl);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  font-feature-settings: "cv11", "ss01";
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-serif);
+  letter-spacing: -0.011em;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-slate-300) transparent;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+::selection {
+  background: var(--color-brand-200);
+  color: var(--color-brand-900);
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .font-ui {
+    font-family: var(--font-sans);
+    letter-spacing: 0;
+  }
+
+  .shadow-soft {
+    box-shadow: 0 1px 2px 0 rgba(28, 25, 23, 0.04), 0 1px 1px 0 rgba(28, 25, 23, 0.03);
+  }
+  .shadow-soft-lg {
+    box-shadow: 0 4px 16px -4px rgba(28, 25, 23, 0.10), 0 2px 6px -2px rgba(28, 25, 23, 0.06);
+  }
+
+  .bg-grain {
+    position: relative;
+  }
+  .bg-grain::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.5;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.02 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .bg-rule-grid {
+    background-image:
+      linear-gradient(to right, rgba(28, 25, 23, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(28, 25, 23, 0.05) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  .animate-shimmer {
+    position: relative;
+    overflow: hidden;
+    background: var(--color-slate-200);
+  }
+  .animate-shimmer::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background-image: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), transparent);
+    animation: shimmer 1.6s infinite;
+  }
+  @keyframes shimmer {
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  .animate-fade-up {
+    animation: fade-up 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-overlay-in {
+    animation: overlay-in 0.2s ease-out both;
+  }
+  @keyframes overlay-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .animate-panel-in {
+    animation: panel-in 0.22s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  @keyframes panel-in {
+    from {
+      opacity: 0;
+      transform: translateY(6px) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+}
