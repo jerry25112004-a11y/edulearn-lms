@@ -19,13 +19,6 @@ export default function LoginPage() {
           Sign up for free
         </Link>
       </p>
-
-      <div className="mt-6 rounded-lg bg-slate-50 p-4 text-xs text-slate-500">
-        <p className="font-semibold text-slate-700">Demo accounts</p>
-        <p className="mt-1">Super Admin: admin@edulearn.dev / Passw0rd!</p>
-        <p>Instructor: sarah.chen@edulearn.dev / Passw0rd!</p>
-        <p>Student: alex.morgan@edulearn.dev / Passw0rd!</p>
-      </div>
     </div>
   );
 }
