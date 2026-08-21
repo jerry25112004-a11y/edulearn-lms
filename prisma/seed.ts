@@ -32,25 +32,31 @@ async function main() {
   const passwordHash = await bcrypt.hash(DEMO_PASSWORD, 10);
 
   // Clean slate (order matters due to FKs; children first)
-  await prisma.$transaction([
-    prisma.notification.deleteMany(),
-    prisma.message.deleteMany(),
-    prisma.conversation.deleteMany(),
-    prisma.announcement.deleteMany(),
-    prisma.meeting.deleteMany(),
-    prisma.lessonProgress.deleteMany(),
-    prisma.enrollment.deleteMany(),
-    prisma.lessonMaterial.deleteMany(),
-    prisma.lesson.deleteMany(),
-    prisma.module.deleteMany(),
-    prisma.course.deleteMany(),
-    prisma.category.deleteMany(),
-    prisma.activityLog.deleteMany(),
-    prisma.passwordResetToken.deleteMany(),
-    prisma.studentProfile.deleteMany(),
-    prisma.instructorProfile.deleteMany(),
-    prisma.user.deleteMany(),
-  ]);
+  // Clean slate (children first because of foreign keys)
+
+await prisma.notification.deleteMany();
+await prisma.message.deleteMany();
+await prisma.conversation.deleteMany();
+await prisma.announcement.deleteMany();
+await prisma.meeting.deleteMany();
+
+await prisma.lessonProgress.deleteMany();
+await prisma.enrollment.deleteMany();
+
+await prisma.lessonMaterial.deleteMany();
+await prisma.lesson.deleteMany();
+await prisma.module.deleteMany();
+
+await prisma.course.deleteMany();
+await prisma.category.deleteMany();
+
+await prisma.activityLog.deleteMany();
+await prisma.passwordResetToken.deleteMany();
+
+await prisma.studentProfile.deleteMany();
+await prisma.instructorProfile.deleteMany();
+
+await prisma.user.deleteMany();
 
   // ---------------- USERS ----------------
   const admin = await prisma.user.create({

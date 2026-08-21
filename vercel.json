@@ -1,0 +1,11 @@
+{
+  "buildCommand": "next build",
+  "installCommand": "npm install",
+  "framework": "nextjs",
+  "regions": ["iad1"],
+  "env": {
+    "DATABASE_URL": "@database-url",
+    "AUTH_SECRET": "@auth-secret",
+    "NEXT_PUBLIC_APP_URL": "@next-public-app-url"
+  }
+}
